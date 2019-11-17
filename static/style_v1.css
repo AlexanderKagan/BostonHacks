@@ -20,7 +20,7 @@
 		min-width: 435px;
 		min-height: 1000px;
 		height: 100%; width: 100%;
-		background: #408dce url('https://hoidrop.s3-us-west-2.amazonaws.com/cp_social_app_background.jpg') no-repeat center center;
+		background: #fafffc url('watercolour.png') no-repeat center center;
 		-webkit-background-size: cover;
 		   -moz-background-size: cover;
 		     -o-background-size: cover;
@@ -28,13 +28,19 @@
 	}
 
 
+div.statistics {
+	margin-top: 5rem;
+	display: none;
+}
+
 /*	The Device */
 
 	div.iphone {
 		height: 810px; width: 435px;
-		position: absolute;
+		/*position: absolute;*/
 		margin: auto;
-		top: 0px; bottom: 80px; left: 0px; right: 0px;
+		/*top: 0px; bottom: 80px; left: 0px; right: 0px;*/
+		margin-top: 5rem;
 		background: url('https://hoidrop.s3-us-west-2.amazonaws.com/cp_social_app_iphone.png') no-repeat center center;
 		-webkit-background-size: cover;
 		   -moz-background-size: cover;

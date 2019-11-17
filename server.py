@@ -10,7 +10,6 @@ app = bottle.app()
 def index():
     return template('static/index.html')
 
-
 @route('/recorder_receiver', method='POST')
 def recorder_receiver():
     audio_data = request.files.get('audio_data')

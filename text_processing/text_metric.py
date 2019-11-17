@@ -74,10 +74,10 @@ class TextMetricEvaluator:
             'diversity': self._uniqueness_mapper[self.text_uniqueness(text) * 10],
             'tone': self.emotion_converter(extracted_emotions),
             'emotional_tones': list(extracted_emotions.keys()),
-            'speech_sentiment': extracted_sentiment['sentiment'] if 'sentiment' in extracted_sentiment else 0.0,
-            'engagement': extracted_emotions['magnitude'] if 'magnitude' in extracted_emotions else 0.0,
+            'speech_sentiment': extracted_sentiment['sentiment']*10 if 'sentiment' in extracted_sentiment else 5,
+            'engagement': extracted_emotions['magnitude'] if 'magnitude' in extracted_emotions else 5,
             'who_do_you_look_like': self.who_do_you_look_like(extracted_emotions),
-            'calmness': 0.5
+            'calmness': random.randint(5, 9)
         }
 
     @classmethod
@@ -108,17 +108,19 @@ class TextMetricEvaluator:
 
     @classmethod
     def random_response(cls, text: str):
+        clarity = random.randint(3, 10)
         return {
-            'clarity': random.randint(1, 10),
-            'text_general_level': random.randint(1, 10),
-            'diversity': random.randint(1, 10),
-            'tone': random.randint(1, 10),
+            'clarity': clarity,
+            'text_general_level': random.randint(clarity - 2, 10),
+            'diversity': random.randint(clarity - 1, 10),
+            'tone': random.randint(clarity - 2, 10),
             'emotional_tones': ['joy'],
             'speech_sentiment': random.randint(-5, 5),
-            'engagement': random.randint(0, 10),
+            'engagement': random.randint(clarity, 10),
             'who_do_you_look_like': cls.who_do_you_look_like(None),
-            'calmness': random.randint(1, 10)
+            'calmness': random.randint(clarity, 10)
         }
+
 
 if __name__ == '__main__':
     tme = TextMetricEvaluator()

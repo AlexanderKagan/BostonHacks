@@ -98,7 +98,7 @@ function sendAudio(blob) {
           }
 
           if (diversity == 9) {
-               $("#diversity").text("You are just perfect! Absolutely. Completely. " + response['diversity'] + "9 out of 9");
+               $("#diversity").text("You are just perfect! Absolutely. Completely. " + response['diversity'] + " out of 9");
           }
 
           var calmness = response['calmness'];

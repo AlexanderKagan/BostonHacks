@@ -1,0 +1,36 @@
+.wrapper {
+/*    position: relative;
+    width: 385px;
+    height: 200px;
+    margin: 50px auto;*/
+    /*font-family: sans-serif;*/
+    /*color: skyblue;*/
+    /*margin-top: 20vh;*/
+    text-align: center;
+    font-size: 110%;
+    margin-top: 60%;
+}
+
+.time {
+    font-size: 300%;
+    width: 100%;
+    text-align: center;
+}
+
+.time span {
+    width: 80px;
+    display: inline-block;
+}
+
+/*.controls {
+    position: absolute;
+    right: 0px;
+    bottom: 25px;
+}*/
+
+button {
+    height: 60px;
+    width: 120px;
+    font-size: 30%;
+    /*cursor: pointer;*/
+}

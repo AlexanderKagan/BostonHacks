@@ -7,6 +7,7 @@
     <!--<link rel="stylesheet" type="text/css" href="style.css">-->
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	  <link rel="stylesheet" type="text/css" href="style_v1.css">
+    <link rel="stylesheet" type="text/css" href="stopwatch.css">
     <link href="https://fonts.googleapis.com/css?family=Courgette&display=swap" rel="stylesheet">
   </head>
   <body>
@@ -88,15 +89,18 @@
                     <div class="screen">
                       <div class="status"></div>
                       <div class="content">
-                        <div class="container recorder-block">
-                            <p>
-                              <button id=recordButton class="btn btn-dark">Toggle recording</button>
-                            </p>
-                            <p>
-                              Duration: <span id="duration">0ms</span>
-                            </p>
-                               <canvas id="myCanvas" width="280" height="200"></canvas>
-                         </div>
+                        <div class="wrapper">
+                          <p>
+                              It's time to test your skills!
+                          </p>
+                          <div class="time">
+                            <span id="minutes">00</span>
+                            :
+                            <span id="seconds">00</span>
+                            <div class="controls">
+                              <button id="recordButton" class="btn btn-info">Record</button>
+                            </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -107,7 +111,7 @@
 
     <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
   	<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
-  	<script src="js/recorder_index_v1.js"></script>
-
+  	<!-- <script src="js/recorder_index_v1.js"></script> -->
+    <script src="js/stopwatch.js"></script>
   </body>
 </html>

@@ -74,7 +74,7 @@ function sendAudio(blob) {
           }
 
           if (clarity >= 8) {
-            $("#clarity").text("You are just awesome. In case yuo want to grow further, you need to task an exam. " + response['clarity'] + " is almost maximum.");
+            $("#clarity").text("You are just awesome. In case you want to grow further, you need to take an exam. " + response['clarity'] + " is almost maximum.");
           }
 
           $("#tone").text(response['tone'] + " /10");

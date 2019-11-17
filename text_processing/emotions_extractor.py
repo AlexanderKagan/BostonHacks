@@ -4,7 +4,7 @@ from ibm_watson import ToneAnalyzerV3
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 
 # path to private ibm credentials
-with open('../keys/ibm_tone_analysis.json') as f:
+with open('keys/ibm_tone_analysis.json') as f:
     credentials = json.load(f)
 
 

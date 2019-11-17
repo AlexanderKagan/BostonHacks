@@ -12,9 +12,9 @@ from google.protobuf.json_format import MessageToJson
 
 bucket_name = "max_bucket_13"
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "../keys/speech_keys.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "keys/speech_keys.json"
 
-stt_client = speech.SpeechClient().from_service_account_json("../keys/speech_keys.json")
+stt_client = speech.SpeechClient().from_service_account_json("keys/speech_keys.json")
 tts_client = texttospeech.TextToSpeechClient()
 
 

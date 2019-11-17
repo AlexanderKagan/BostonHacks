@@ -1,8 +1,15 @@
+import random
+
 import textstat
 import nltk
 import typing
+import json
 
 from text_processing.emotions_extractor import IBMEmotionalAnalysis
+from text_processing.google_nlp import GoogleNLPModule
+
+with open('data/prewritten_chars.json') as json_file:
+    prewritten_chars = json.load(json_file)
 
 
 class TextMetricEvaluator:
@@ -53,15 +60,21 @@ class TextMetricEvaluator:
             10: 9
         }
         self._emotion_detector = IBMEmotionalAnalysis()
+        self._google_nlp = GoogleNLPModule()
 
     def evaluate(self, text: str):
         extracted_emotions = self._emotion_detector.extract_emotions_from_raw_text(text)
+        extracted_sentiment = self._google_nlp.extract_sentiment_from_raw_text(text)
+
         return {
             'easy_to_listen_score': self._ease_mapper[(round(textstat.flesch_reading_ease(text)) - 1) // 10],
             'text_general_level': self._general_level_mapper[textstat.text_standard(text, float_output=True)],
             'text_uniqueness': self._uniqueness_mapper[self.text_uniqueness(text) * 10],
             'tone_ranking': self.emotion_converter(extracted_emotions),
-            'emotional_tones': list(extracted_emotions.keys())
+            'emotional_tones': list(extracted_emotions.keys()),
+            'speech_sentiment': extracted_sentiment['sentiment'],
+            'speech_expressiveness': extracted_emotions['magnitude'],
+            'who_do_you_look_like': self.who_do_you_look_like(extracted_emotions)
         }
 
     @classmethod
@@ -85,6 +98,11 @@ class TextMetricEvaluator:
             return 4
         if 'joy' in extracted_emotions:
             return 8
+
+    @classmethod
+    def who_do_you_look_like(cls, extracted_emotions):
+        return random.choice(prewritten_chars)
+
 
 if __name__ == '__main__':
     tme = TextMetricEvaluator()

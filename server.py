@@ -1,6 +1,7 @@
 import json
 
 import bottle
+import os
 from bottle import route, request, error, template, static_file, response
 
 from audio_recognition.speech_processing import audio_to_text
@@ -20,6 +21,9 @@ def index():
 @route('/recorder_receiver', method='POST')
 def recorder_receiver():
     audio_data = request.files.get('audio_data')
+    if os.path.exists('record.wav'):
+        os.remove('record.wav')
+
     audio_data.save('record.wav')
     try:
         converted_from_audio = audio_to_text('record.wav')

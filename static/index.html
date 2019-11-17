@@ -4,22 +4,44 @@
     <meta charset="UTF-8">
     <title>Simple Recorder.js demo with record, stop and pause</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <!--<link rel="stylesheet" type="text/css" href="style.css">-->
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	  <link rel="stylesheet" type="text/css" href="style_v1.css">
   </head>
   <body>
-    <h1>Simple Recorder.js demo</h1>
-    <div id="controls">
-  	 <button id="recordButton">Record</button>
-  	 <button id="pauseButton" disabled>Pause</button>
-  	 <button id="stopButton" disabled>Stop</button>
-    </div>
-    <div id="formats">Format: start recording to see sample rate</div>
-  	<h3>Recordings</h3>
-  	<ol id="recordingsList"></ol>
+    <!--<h1>Simple Recorder.js demo</h1>-->
+    <!--<div id="controls">-->
+  	 <!--<button id="recordButton">Record</button>-->
+  	 <!--<button id="pauseButton" disabled>Pause</button>-->
+  	 <!--<button id="stopButton" disabled>Stop</button>-->
+    <!--</div>-->
+    <!--<div id="formats">Format: start recording to see sample rate</div>-->
+  	<!--<h3>Recordings</h3>-->
+  	<!--<ol id="recordingsList"></ol>-->
+
+    <div class="background">
+		<div class="circle"></div>
+		<div class="iphone">
+			<div class="screen">
+				<div class="status"></div>
+				<div class="content">
+					<div class="container recorder-block">
+					    <p>
+					      <button id=recordButton class="btn btn-dark">Toggle recording</button>
+					    </p>
+					    <p>
+					      Duration: <span id="duration">0ms</span>
+					    </p>
+					       <canvas id="myCanvas" width="280" height="200"></canvas>
+					 </div>
+				</div>
+			</div>
+		</div>
+	</div>
 
     <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
   	<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
-  	<script src="js/recorder.js"></script>
+  	<script src="js/recorder_index_v1.js"></script>
 
   </body>
 </html>

@@ -26,7 +26,7 @@ def recorder_receiver():
     analyze_result = tme.evaluate(converted_from_audio)
     print(analyze_result)
     response.content_type = 'application/json'
-    return json.dumps({'hi' : 1, 'bye' : 2})
+    return json.dumps(analyze_result)
 
 @route('/<filename:path>')
 def send_file(filename):

@@ -18,3 +18,4 @@ class WordUniqueness:
 
     def calculate_uniqueness(self, text):
         return np.mean(self.calculate_idfs(text))
+

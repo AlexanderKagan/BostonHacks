@@ -1,5 +1,6 @@
 import textstat
 import nltk
+import typing
 
 from text_processing.emotions_extractor import IBMEmotionalAnalysis
 
@@ -54,11 +55,13 @@ class TextMetricEvaluator:
         self._emotion_detector = IBMEmotionalAnalysis()
 
     def evaluate(self, text: str):
+        extracted_emotions = self._emotion_detector.extract_emotions_from_raw_text(text)
         return {
             'easy_to_listen_score': self._ease_mapper[(round(textstat.flesch_reading_ease(text)) - 1) // 10],
             'text_general_level': self._general_level_mapper[textstat.text_standard(text, float_output=True)],
             'text_uniqueness': self._uniqueness_mapper[self.text_uniqueness(text) * 10],
-            'emotions': list(self._emotion_detector.extract_emotions_from_raw_text(text))
+            'tone_ranking': self.emotion_converter(extracted_emotions),
+            'emotional_tones': list(extracted_emotions.keys())
         }
 
     @classmethod
@@ -66,7 +69,23 @@ class TextMetricEvaluator:
         tokens = nltk.word_tokenize(text)
         return len(set(nltk.word_tokenize(text))) / len(tokens)
 
+    @classmethod
+    def emotion_converter(cls, extracted_emotions: typing.Dict[str, typing.Any]):
+        if not extracted_emotions:
+            return 6
+        if 'analytical' in extracted_emotions or 'confident' in extracted_emotions:
+            return 8
+        if 'tentative' in extracted_emotions:
+            return 6
+        if 'anger' in extracted_emotions:
+            return 5
+        if 'fear' in extracted_emotions or 'sadness' in extracted_emotions:
+            return 4
+        if 'disgust' in extracted_emotions:
+            return 4
+        if 'joy' in extracted_emotions:
+            return 8
 
 if __name__ == '__main__':
     tme = TextMetricEvaluator()
-    print(tme.evaluate('I believe we can do it better. Otherwise, there is nothing to talk about'))
+    result = tme.evaluate('I believe we can do it better. Otherwise, there is nothing to talk about')

@@ -6,7 +6,6 @@ from google.cloud.language import enums
 from google.cloud.language import types
 
 # path to private google credentials
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '../keys/nlp_keys.json'
 
 _from_enum_conversion = {
     0: 'UNKNOWN',

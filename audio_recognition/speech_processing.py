@@ -68,7 +68,6 @@ def audio_to_text(path_to_file):
     delete_blob(bucket_name, filename)
 
     json_text = MessageToJson(text)
-
     result_text = json.loads(json_text)["results"][0]["alternatives"][0]["transcript"]
 
     return result_text
@@ -80,6 +79,6 @@ def text_to_audio(text_data, path_to_file):
 
 
 if __name__ == '__main__':
-    text_from_audio = audio_to_text("test.wav")
+    text_from_audio = audio_to_text("record.wav")
     print(text_from_audio)
     # text_to_audio(text_from_audio, "awesome_audio.mp3")

@@ -59,6 +59,7 @@ class TextMetricEvaluator:
             9: 9,
             10: 9
         }
+
         self._emotion_detector = IBMEmotionalAnalysis()
         self._google_nlp = GoogleNLPModule()
 
@@ -66,15 +67,17 @@ class TextMetricEvaluator:
         extracted_emotions = self._emotion_detector.extract_emotions_from_raw_text(text)
         extracted_sentiment = self._google_nlp.extract_sentiment_from_raw_text(text)
 
+        # self._ease_mapper[(round(textstat.flesch_reading_ease(text)) - 1) // 10],
         return {
-            'easy_to_listen_score': self._ease_mapper[(round(textstat.flesch_reading_ease(text)) - 1) // 10],
+            'clarity': 5,
             'text_general_level': self._general_level_mapper[textstat.text_standard(text, float_output=True)],
-            'text_uniqueness': self._uniqueness_mapper[self.text_uniqueness(text) * 10],
-            'tone_ranking': self.emotion_converter(extracted_emotions),
+            'diversity': self._uniqueness_mapper[self.text_uniqueness(text) * 10],
+            'tone': self.emotion_converter(extracted_emotions),
             'emotional_tones': list(extracted_emotions.keys()),
-            'speech_sentiment': extracted_sentiment['sentiment'],
-            'speech_expressiveness': extracted_emotions['magnitude'],
-            'who_do_you_look_like': self.who_do_you_look_like(extracted_emotions)
+            'speech_sentiment': extracted_sentiment['sentiment'] if 'sentiment' in extracted_sentiment else 0.0,
+            'engagement': extracted_emotions['magnitude'] if 'magnitude' in extracted_emotions else 0.0,
+            'who_do_you_look_like': self.who_do_you_look_like(extracted_emotions),
+            'calmness': 0.5
         }
 
     @classmethod
@@ -103,6 +106,19 @@ class TextMetricEvaluator:
     def who_do_you_look_like(cls, extracted_emotions):
         return random.choice(prewritten_chars)
 
+    @classmethod
+    def random_response(cls, text: str):
+        return {
+            'clarity': random.randint(1, 10),
+            'text_general_level': random.randint(1, 10),
+            'diversity': random.randint(1, 10),
+            'tone': random.randint(1, 10),
+            'emotional_tones': ['joy'],
+            'speech_sentiment': random.randint(-5, 5),
+            'engagement': random.randint(0, 10),
+            'who_do_you_look_like': cls.who_do_you_look_like(None),
+            'calmness': random.randint(1, 10)
+        }
 
 if __name__ == '__main__':
     tme = TextMetricEvaluator()

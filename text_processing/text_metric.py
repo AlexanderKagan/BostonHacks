@@ -113,10 +113,10 @@ class TextMetricEvaluator:
             'clarity': clarity,
             'text_general_level': random.randint(clarity - 2, 10),
             'diversity': random.randint(clarity - 1, 10),
-            'tone': random.randint(clarity - 2, 10),
+            'tone': random.randint(clarity - 2, 7),
             'emotional_tones': ['joy'],
             'speech_sentiment': random.randint(-5, 5),
-            'engagement': random.randint(clarity, 10),
+            'engagement': random.randint(clarity, 7),
             'who_do_you_look_like': cls.who_do_you_look_like(None),
             'calmness': random.randint(clarity, 10)
         }
